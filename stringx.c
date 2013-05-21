@@ -413,30 +413,6 @@ char* string_parseTemplate(const char* templ,const char* starttoken,const char* 
 
 
 
-
-
-
-
-
-int string_countOccurence(const char* str,const char* token)
-{
-    int ret=0;
-    
-    if(str!=NULL && token!=NULL)
-    {
-        char* temp=(char*)str;
-        
-        while((temp=strstr(temp,token))!=NULL)
-        {
-            temp+=strlen(token)*sizeof(char);
-            ret++;
-        }
-        
-    }
-    return ret;
-}
-
-
 char* string_trim(const char* str,const char* keys)
 {
     
