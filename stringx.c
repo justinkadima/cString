@@ -381,15 +381,19 @@ char* string_trim(const char* str)
 char* string_parseTemplate(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params,int paramnr)
 {
 
+        char* ret=NULL;
+
 	if(!string_isNullOrEmpty(templ) && !string_isNullOrEmpty(starttoken) && !string_isNullOrEmpty(endtoken) && params!=NULL && paramnr>0)
 	{
 		
-			char* back=NULL;
+			
 			char* ex=string_extractBetweenTokens(templ,starttoken,endtoken);
 			if(!string_isNullOrEmpty(ex))
 			{
+                                
+                                
 				int t=0;
-				back=string_clone(ex);
+				char* back=string_clone(ex);
 				
 				
 				while(t<=paramnr)
@@ -409,18 +413,17 @@ char* string_parseTemplate(const char* templ,const char* starttoken,const char* 
 					}			
 					
 				}
+                                
+                                ret=string_replaceBetweenTokens(templ,starttoken,endtoken,back,Out);
+                                //free(back);
+                                
 
 			}
 			free(ex);
 			
-			char* modt=string_replaceBetweenTokens(templ,starttoken,endtoken,back,Out);
-			free(back);
-			
-			return modt;
-
 	}
 
-	return NULL;
+	return ret;
 }
 
 
