@@ -278,7 +278,7 @@ char* string_trimLeft(const char* str)
 		int off=0;
 		while(1)
 		{
-			char z=str[off];
+			
 			if(str[off]==' ')
 			{
 				off++;
@@ -312,10 +312,11 @@ char* string_trimRight(const char* str)
 	if(!string_isNullOrEmpty(str))
 	{
 		int off=0;
-
-		for(int x=strlen(str)-1;x>=0;x--)
+                int x;
+                
+		for(x=strlen(str)-1;x>=0;x--)
 		{
-			char z=str[x];
+			
 			if(str[x]==' ')
 			{
 				off++;
@@ -412,7 +413,7 @@ char* string_parseTemplate(const char* templ,const char* starttoken,const char* 
 			}
 			free(ex);
 			
-			char* modt=string_replaceBetweenTokens(templ,starttoken,endtoken,back,TokensInclusion.Out);
+			char* modt=string_replaceBetweenTokens(templ,starttoken,endtoken,back,Out);
 			free(back);
 			
 			return modt;
@@ -427,7 +428,7 @@ char* string_parseTemplate(const char* templ,const char* starttoken,const char* 
 
 
 
-char* string_trim(const char* str,const char* keys)
+char* string_trimMultiple(const char* str,const char* keys)
 {
     
     char* temp=strpbrk(str,keys);

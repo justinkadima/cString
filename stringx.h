@@ -6,7 +6,7 @@ extern "C" {
 #endif
 
 char* string_clone(const char* str);
-char* string_trim(const char* str,const char* keys);
+char* string_trimMultiple(const char* str,const char* keys);
 
 
 char* string_trim(const char* str);
