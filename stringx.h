@@ -47,7 +47,7 @@ typedef struct
 	char* value;
 }TemplateParam;
 
-char* string_parseTemplate(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params);
+char* string_parseTemplate(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params,int paramnr);
 
 
 
@@ -56,7 +56,7 @@ char* string_parseTemplate(const char* templ,const char* starttoken,const char* 
 
 
 
-#ifdef --cplusplus
+#ifdef __cplusplus
 }
 #endif
 
