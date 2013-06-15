@@ -314,7 +314,7 @@ char* string_trimRight(const char* str)
 		int off=0;
                 int x;
                 
-		for(x=strlen(str)-1;x>=0;x--)
+		for(x=(int)(strlen(str)-1);x>=0;x--)
 		{
 			
 			if(str[x]==' ')
@@ -434,6 +434,8 @@ char* string_parseTemplate(const char* templ,const char* starttoken,const char* 
 
 
 
+
+
 char* string_trimMultiple(const char* str,const char* keys)
 {
     
@@ -481,4 +483,39 @@ char* string_clone(const char* str)
             return ret;
     }
     return NULL;
+}
+
+char* string_join(const char* str1,const char* str2)
+{
+    if(str1==NULL && str2==NULL)
+    {
+        return NULL;
+    }
+    
+    size_t sz1=0;
+    size_t sz2=0;
+    
+    
+   
+    if(str1!=NULL)sz1=strlen(str1);
+    if(str2!=NULL)sz2=strlen(str2);
+    
+    char* ret=(char*)calloc(sz1+sz2+1,sizeof(char));
+    if(ret!=NULL)
+    {
+        if(str1!=NULL)
+        {
+            ret=strcat(ret,str1);
+        }
+        if(str2!=NULL)
+        {
+            ret=strcat(ret,str2);
+        }
+        
+        return ret;
+    }
+    
+    return NULL;
+   
+    
 }

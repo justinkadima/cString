@@ -6,12 +6,20 @@ extern "C" {
 #endif
 
 char* string_clone(const char* str);
-char* string_trimMultiple(const char* str,const char* keys);
+char* string_join(const char* str1,const char* str2);
 
+int string_countOccurence(const char* str,const char* token);
+int string_isNullOrEmpty(const char* str);
+const char* safe_string(const char* str);
+    
+#define echo(s) puts(safe_string(s))
+    
 
 char* string_trim(const char* str);
 char* string_trimRight(const char* str);
 char* string_trimLeft(const char* str);
+char* string_trimMultiple(const char* str,const char* keys);
+    
 unsigned int string_endsWith(const char* str,const char* token);
 unsigned int string_startsWith(const char* str,const char* token);
 
@@ -25,9 +33,7 @@ char* string_replaceBetweenTokens(const char* str,const char* tokenstart,const c
 char* string_extractBetweenTokens(const char* str,const char* tokenstart,const char* tokenend);
 char* string_replace(const char* str,const char* oldval,const char* newval);
 
-int string_countOccurence(const char* str,const char* token);
-int string_isNullOrEmpty(const char* str);
-const char* safe_string(const char* str);
+
 
 
 
@@ -52,7 +58,7 @@ char* string_parseTemplate(const char* templ,const char* starttoken,const char* 
 
 
 
-#define echo(s) puts(safe_string(s))
+
 
 
 
