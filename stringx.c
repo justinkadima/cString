@@ -381,7 +381,7 @@ char* string_trim(const char* str)
 char* string_parseTemplate(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params,int paramnr)
 {
 
-        char* ret=NULL;
+    char* ret=NULL;
 
 	if(!string_isNullOrEmpty(templ) && !string_isNullOrEmpty(starttoken) && !string_isNullOrEmpty(endtoken) && params!=NULL && paramnr>0)
 	{
@@ -396,26 +396,29 @@ char* string_parseTemplate(const char* templ,const char* starttoken,const char* 
 				char* back=string_clone(ex);
 				
 				
-				while(t<=paramnr)
+				while(t<paramnr)
 				{
+                                         
+					char* temp=string_replace(back,params[t].name,params[t].value);
 					
-					char* temp=string_replace(back,params->name,params->value);
-					free(back);
+                                        
 					if(!string_isNullOrEmpty(temp))
 					{
+                        free(back);
 						back=string_clone(temp);
-						free(temp);	
-						params+=sizeof(TemplateParam);
+						free(temp);
+                        t++;
 					}
 					else
 					{
+                        free(temp);
 						break;
 					}			
 					
 				}
                                 
-                                ret=string_replaceBetweenTokens(templ,starttoken,endtoken,back,Out);
-                                //free(back);
+                ret=string_replaceBetweenTokens(templ,starttoken,endtoken,back,Out);
+                free(back);
                                 
 
 			}
