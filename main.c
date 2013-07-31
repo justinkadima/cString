@@ -38,7 +38,12 @@ int main (int argc, const char * argv[])
     char* llt=string_toLower(lt);
     echo(llt);
     if(llt!=NULL)free(llt);
-    
+
+
+    char* ut={"a small one"};
+    char* uret=string_toUpper(ut);
+   echo(uret);
+    free(uret);    
     return 0;
 }
 

@@ -533,3 +533,27 @@ char* string_toLower(const char* str)
     return NULL;
     
 }
+
+char* string_toUpper(const char* str)
+{
+	if(str!=NULL)
+	{
+		char* ret=string_clone(str);
+		if(ret==NULL)return NULL;
+		int x=0,sx=strlen(str);
+		
+		while(x<sx)
+		{
+			ret[x]=toupper(ret[x]);
+			x++;
+
+		}
+		return ret;
+
+	}
+	return NULL;
+
+}
+
+
+
