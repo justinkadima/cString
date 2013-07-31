@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "stringx.h"
 
 
@@ -347,35 +348,29 @@ char* string_trimRight(const char* str)
 
 char* string_trim(const char* str)
 {
-	if(!string_isNullOrEmpty(str))
-	{
-		
-		char* temp=string_trimLeft(str);
-		char* sec=NULL;
-		if(temp==NULL)
-		{
-				sec=(char*)str;
-		}
-		else
-		{
-			sec=temp;
-			
-		}
-		char* res=string_trimRight(sec);
-		
-		if(temp!=NULL)
-		{
-			if(res==NULL)res=temp;
-			else free(temp);
-		}
-		
-		return res;
-
-	}
-
-	return NULL;
+    if(!string_isNullOrEmpty(str))
+    {
+        char* temp=string_trimLeft(str);
+        char* sec=NULL;
+        if(temp==NULL)
+        {
+            sec=(char*)str;
+        }
+        else
+        {
+            sec=temp;
+        }
+        char* res=string_trimRight(sec);
+        if(temp!=NULL)
+        {
+            if(res==NULL)res=temp;
+            else free(temp);
+            
+        }
+        return res;
+    }
+    return NULL;
 }
-
 
 
 char* string_parseTemplate(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params,int paramnr)
@@ -517,5 +512,24 @@ char* string_join(const char* str1,const char* str2)
     
     return NULL;
    
+    
+}
+
+
+char* string_toLower(const char* str)
+{
+    if(str!=NULL)
+    {
+        char* ret=string_clone(str);
+        int x=0;
+        int sx=strlen(str);
+        while(x<sx)
+        {
+            ret[x]=tolower(ret[x]);
+            x++;
+        }
+        return ret;
+    }
+    return NULL;
     
 }

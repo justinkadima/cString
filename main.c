@@ -34,6 +34,11 @@ int main (int argc, const char * argv[])
     
     free(sj);
     
+    char* lt={"Unu Dece"};
+    char* llt=string_toLower(lt);
+    echo(llt);
+    if(llt!=NULL)free(llt);
+    
     return 0;
 }
 
