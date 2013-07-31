@@ -555,5 +555,51 @@ char* string_toUpper(const char* str)
 
 }
 
+char* string_htmlEncode(const char* str)
+{
+	if(str!=NULL)
+	{
+		int x=0;
+        size_t len=strlen(str);
+        char* ret=(char*)calloc(3*len+1,sizeof(char));
+        char* buf=(char*)calloc(5,sizeof(char));
+        if(ret==NULL || buf==NULL)return NULL;
+        
+       
+        while(x<len)
+        {
+        	switch(str[x])
+        	{
+        		case '&':
+        			sprintf(buf,"%s","&amp;");
+        		break;
+        		case '_"':
+        			sprintf(buf,"%s","&quot;");
+        		break;
+        		case '_'':
+        			sprintf(buf,"%s","&apos;");
+        		break;
+        		case '<':
+        			sprintf(buf,"%s","&lt;");
+        		break;
+        		case '>':
+        			sprintf(buf,"%s","&gt;");
+        		break;
+        		case ' ':
+        			sprintf(buf,"%c",'+');
+        		break;
+        		default:
+        			sprintf(buf,"%c",str[x]);
+        	}
+        	strcat(ret,buf);
+        	x++;
+        }         
+		free(buf);
+		return ret;
+
+	}
+	return NULL;
 
 
+
+}

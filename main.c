@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "stringx.h"
 
 int main (int argc, const char * argv[])
@@ -43,7 +44,19 @@ int main (int argc, const char * argv[])
     char* ut={"a small one"};
     char* uret=string_toUpper(ut);
    echo(uret);
-    free(uret);    
+    free(uret);
+
+    char* aaa={"qwerty"};
+    char* aaa2=(char*)calloc(1,2*strlen(aaa)+1);
+    strcpy(aaa2,aaa);
+    puts(aaa2);
+    printf("SIZE: %lu \n",(unsigned long)strlen(aaa2));
+
+    free(aaa2);
+     
+    char* ddc=string_htmlEncode("/unu/doi?par=43&name=re done&val='32' ");
+    echo(ddc);
+    free(ddc); 
     return 0;
 }
 
