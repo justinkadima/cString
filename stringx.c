@@ -154,51 +154,25 @@ char* string_replaceBetweenTokens(const char* str,const char* tokenstart,const c
 
 
 unsigned int string_startsWith(const char* str,const char* token)
-{
-	if(!string_isNullOrEmpty(str) && !string_isNullOrEmpty(token))
-	{
-		if(strlen(str)>=strlen(token))
-		{
-			int x;
-			for(x=0;x<strlen(token);x++)
-			{
-				if(str[x]!=token[x])return 0;
-			}
-
-			return 1;
-
-		}
-
-	}
-
-	return 0;
+{	
+        if(strncmp(str,token,strlen(token))==0)return 1;
+        return 0;
 }
 
 unsigned int string_endsWith(const char* str,const char* token)
 {
-	if(!string_isNullOrEmpty(str) && !string_isNullOrEmpty(token))
+	
+        if(!string_isNullOrEmpty(str) && !string_isNullOrEmpty(token))
 	{
-		if(strlen(str)>=strlen(token))
-		{
-			size_t off=strlen(str)-strlen(token);
-			char* temp=(char*)str;
-			temp+=off;
-
-			int x;
-			for(x=0;x<strlen(token);x++)
-			{
-				if(temp[x]!=token[x])return 0;
-			}
-
-			return 1;
-			
-
-			
-		}
-
-	}
-
-	return 0;
+           size_t off=strlen(str)-strlen(token);
+           if(off>=0)
+           {
+               char* temp=(char*)str;
+               temp+=off;
+               if(strncmp(temp,token,strlen(token))==0)return 1;
+           }
+        }
+        return 0;
 
 }
 
@@ -560,41 +534,40 @@ char* string_htmlEncode(const char* str)
 	if(str!=NULL)
 	{
 		int x=0;
-	        size_t len=strlen(str);
-	        char* ret=(char*)calloc(3*len+1,sizeof(char));
-	        char* buf=(char*)calloc(5,sizeof(char));
-	        if(ret==NULL || buf==NULL)return NULL;
-	        
-	       
-	        while(x<len)
-	        {
-	        	switch(str[x])
-	        	{
-	        		case '&':
-	        			sprintf(buf,"%s","&amp;");
-	        		break;
-	        		case '\"':
-	        			sprintf(buf,"%s","&quot;");
-	        		break;
-	        		case '\'':
-	        			sprintf(buf,"%s","&apos;");
-	        		break;
-	        		case '<':
-	        			sprintf(buf,"%s","&lt;");
-	        		break;
-	        		case '>':
-	        			sprintf(buf,"%s","&gt;");
-	        		break;
-	        		case ' ':
-	        			sprintf(buf,"%c",'+');
-	        		break;
-	        		default:
-	        			sprintf(buf,"%c",str[x]);
-	        	}
-	        	strcat(ret,buf);
-	        	x++;
-	        }  
-	        
+        size_t len=strlen(str);
+        char* ret=(char*)calloc(3*len+1,sizeof(char));
+        char* buf=(char*)calloc(5,sizeof(char));
+        if(ret==NULL || buf==NULL)return NULL;
+        
+       
+        while(x<len)
+        {
+        	switch(str[x])
+        	{
+        		case '&':
+        			sprintf(buf,"%s","&amp;");
+        		break;
+        		case '\"':
+        			sprintf(buf,"%s","&quot;");
+        		break;
+        		case '\'':
+        			sprintf(buf,"%s","&apos;");
+        		break;
+        		case '<':
+        			sprintf(buf,"%s","&lt;");
+        		break;
+        		case '>':
+        			sprintf(buf,"%s","&gt;");
+        		break;
+        		case ' ':
+        			sprintf(buf,"%c",'+');
+        		break;
+        		default:
+        			sprintf(buf,"%c",str[x]);
+        	}
+        	strcat(ret,buf);
+        	x++;
+        }         
 		free(buf);
 		return ret;
 
