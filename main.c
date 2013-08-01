@@ -6,6 +6,32 @@
 
 int main (int argc, const char * argv[])
 {
+
+    //test string_start
+
+    char* startTestString="This string starts with this";
+    if(string_startsWith(startTestString,"This"))
+    {
+        puts("string does start with This");
+    }
+    else
+    {
+        puts("test failed for startTestString");
+    }
+
+    char* endTestString="This string ends with that";
+    if(string_endsWith(endTestString,"that"))
+    {
+        puts("string does end with that");
+    }
+    else
+    {
+        puts("test failed for endTestString");
+    }
+
+ 
+    
+    
     const char* buf="  aici a fost aici se duce    ";
     char* ret= string_trimMultiple(buf," ,i"); 
     puts(ret);
@@ -26,8 +52,8 @@ int main (int argc, const char * argv[])
     free(pt);
     
     
-    char* one={"the first"};
-    char* two={" the last"};
+    char* one="the first";
+    char* two=" the last";
     
     char* sj=string_join(one, two);
     
