@@ -1,0 +1,2 @@
+main.o: main.c stringx.h
+stringx.o: stringx.c stringx.h
