@@ -7,7 +7,7 @@
 int main (int argc, const char * argv[])
 {
 
-    //test string_start
+    //test string_start ,string_end
 
     char* startTestString="This string starts with this";
     if(string_startsWith(startTestString,"This"))
