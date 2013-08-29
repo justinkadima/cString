@@ -9,7 +9,6 @@ int main (int argc, const char * argv[])
 
     //test string_start & string_end
 
-
     char* startTestString="This string starts with this";
     if(string_startsWith(startTestString,"This"))
     {
@@ -84,6 +83,20 @@ int main (int argc, const char * argv[])
     char* ddc=string_htmlEncode("/unu/doi?par=43&name=re done&val='32' ");
     echo(ddc);
     free(ddc); 
+    
+    
+    char inits[]="UN STRING";
+    const char* keyxor="pass";
+    
+    string_XORcypher(inits,keyxor);
+    
+    puts(inits);
+    
+    //decript
+    
+    string_XORcypher(inits,keyxor);
+     puts(inits);
+    
     return 0;
 }
 
