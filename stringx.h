@@ -59,9 +59,12 @@ char* string_parseTemplate(const char* templ,const char* starttoken,const char* 
 
 char* string_toLower(const char* str);
 char* string_toUpper(const char* str);
-char* string_encrypt(const char* str,const char* salt);
+
+char* string_XORcypher(char* str,const char* key);
+
+
 char* string_htmlEncode(const char* str);
-char* string_htmlDecode(const char* str);
+
 
 
 
