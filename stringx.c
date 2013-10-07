@@ -536,8 +536,14 @@ char* string_htmlEncode(const char* str)
 		int x=0;
         size_t len=strlen(str);
         char* ret=(char*)calloc(3*len+1,sizeof(char));
-        char* buf=(char*)calloc(5,sizeof(char));
-        if(ret==NULL || buf==NULL)return NULL;
+        if(ret==NULL)return NULL;
+        
+        char* buf=(char*)calloc(10,sizeof(char));
+        if(buf==NULL)
+        {
+        	free(ret);
+        	return NULL;
+        }
         
        
         while(x<len)

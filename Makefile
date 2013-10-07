@@ -36,4 +36,6 @@ cleano:
 clean:
 	rm -f $(OBJ) $(PROG)
 	
+cleangit:
+	rm -f $(OBJ) $(PROG) $(PROG).depend
 
