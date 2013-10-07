@@ -583,3 +583,35 @@ char* string_htmlEncode(const char* str)
 
 
 }
+
+
+
+
+char* string_XORcypher(char* str,const char* key)
+{
+	if(string_isNullOrEmpty(str) || string_isNullOrEmpty(key))
+	{
+		return str;	
+	
+	}
+	
+	int szstr=(int)strlen(str);
+	int szkey=(int)strlen(key);
+	
+	int x=0;
+	int y=0;
+	
+	
+	
+	while(x<szstr)
+	{
+		str[x]=str[x]^key[y];
+		x++;
+		y++;
+		
+		if(y==szkey)y=0;	
+	
+	}
+	
+	return str;
+}
