@@ -448,8 +448,11 @@ char* string_clone(const char* str)
     if(str!=NULL)
     {
             char* ret=(char*)calloc(1,(strlen(str)+1)*sizeof(char));
-            strcpy(ret,str);
-            return ret;
+            if(ret)
+            {
+           		strcpy(ret,str);
+           		return ret;
+            }
     }
     return NULL;
 }
