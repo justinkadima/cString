@@ -163,8 +163,8 @@ unsigned int string_endsWith(const char* str,const char* token)
 {
 	
         if(!string_isNullOrEmpty(str) && !string_isNullOrEmpty(token))
-	{
-           size_t off=strlen(str)-strlen(token);
+		{
+           int off=strlen(str)-strlen(token);
            if(off>=0)
            {
                char* temp=(char*)str;
