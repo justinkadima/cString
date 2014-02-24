@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+int string_equal(const char* s1,const char* s2);
+
 char* string_clone(const char* str);
 char* string_join(const char* str1,const char* str2);
 

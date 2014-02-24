@@ -5,6 +5,12 @@
 #include "stringx.h"
 
 
+
+int string_equal(const char* s1,const char* s2)
+{
+	return strcmp(s1,s2)==0?1:0;
+}
+
 const char* safe_string(const char* str)
 {
 	if(str==NULL)return "NULL";
