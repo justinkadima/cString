@@ -48,9 +48,17 @@ int main (int argc, const char * argv[])
     
     char* pt=string_parseTemplate(template,"<template>","</template>",par,2);
     puts(pt);
-
+    par[0].value="Dan";
+    par[1].value="Germany";
+	char* spt=string_parseTemplate(template,"<template>","</template>",par,2);
+	puts(spt);
+	
+	char* fpt=string_join(pt,spt);
+	puts(fpt);
+	
     free(pt);
-    
+    free(spt);
+    free(fpt);
     
     char* one="the first";
     char* two=" the last";
@@ -69,7 +77,7 @@ int main (int argc, const char * argv[])
 
     char* ut={"a small one"};
     char* uret=string_toUpper(ut);
-   echo(uret);
+    echo(uret);
     free(uret);
 
     char* aaa={"qwerty"};
@@ -92,11 +100,19 @@ int main (int argc, const char * argv[])
     
     puts(inits);
     
-    //decript
-    
-    string_XORcypher(inits,keyxor);
+   
+   //decript 
+     string_XORcypher(inits,keyxor);
      puts(inits);
-    
+        
+        
+     //url encode
+     
+     char url[]="http://foo bar/";
+     puts(string_urlEncode(url));
+        
+        
+        
     return 0;
 }
 

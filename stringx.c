@@ -568,9 +568,6 @@ char* string_htmlEncode(const char* str)
         		case '>':
         			sprintf(buf,"%s","&gt;");
         		break;
-        		case ' ':
-        			sprintf(buf,"%c",'+');
-        		break;
         		default:
         			sprintf(buf,"%c",str[x]);
         	}
@@ -587,6 +584,47 @@ char* string_htmlEncode(const char* str)
 
 }
 
+char* string_urlEncode(const char* str)
+{
+
+	if(str!=NULL)
+	{
+		int x=0;
+        size_t len=strlen(str);
+        char* ret=(char*)calloc(3*len+1,sizeof(char));
+        if(ret==NULL)return NULL;
+        
+        char* buf=(char*)calloc(10,sizeof(char));
+        if(buf==NULL)
+        {
+        	free(ret);
+        	return NULL;
+        }
+        
+        while(x<len)
+        {
+        		char c=str[x];
+        		
+        		if( ('a' <= c && c <= 'z')|| ('A' <= c && c <= 'Z')|| ('0' <= c && c <= '9') )
+        		{
+        			sprintf(buf,"%c",c);
+        	
+        		}
+        		else
+        		{
+        			sprintf(buf,"%%%02X",c);
+        		}
+        	
+        	strcat(ret,buf);
+        	x++;
+        }         
+		free(buf);
+		return ret;
+
+	}
+	return NULL;
+
+}
 
 
 

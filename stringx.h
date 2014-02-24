@@ -64,7 +64,7 @@ char* string_XORcypher(char* str,const char* key);
 
 
 char* string_htmlEncode(const char* str);
-
+char* string_urlEncode(const char* str);
 
 
 
