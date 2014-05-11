@@ -353,61 +353,6 @@ char* string_trim(const char* str)
 }
 
 
-char* string_parseTemplate(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params,int paramnr)
-{
-
-    char* ret=NULL;
-
-	if(!string_isNullOrEmpty(templ) && !string_isNullOrEmpty(starttoken) && !string_isNullOrEmpty(endtoken) && params!=NULL && paramnr>0)
-	{
-		
-			
-			char* ex=string_extractBetweenTokens(templ,starttoken,endtoken);
-			if(!string_isNullOrEmpty(ex))
-			{
-                                
-                                
-				int t=0;
-				char* back=string_clone(ex);
-				
-				
-				while(t<paramnr)
-				{
-                                         
-					char* temp=string_replace(back,params[t].name,params[t].value);
-					
-                                        
-					if(!string_isNullOrEmpty(temp))
-					{
-                        free(back);
-						back=string_clone(temp);
-						free(temp);
-                        t++;
-					}
-					else
-					{
-                        free(temp);
-						break;
-					}			
-					
-				}
-                                
-                ret=string_replaceBetweenTokens(templ,starttoken,endtoken,back,Out);
-                free(back);
-                                
-
-			}
-			free(ex);
-			
-	}
-
-	return ret;
-}
-
-
-
-
-
 
 
 
@@ -662,3 +607,92 @@ char* string_XORcypher(char* str,const char* key)
 	
 	return str;
 }
+
+
+
+
+
+
+
+
+char* string_parseTemplate(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params,int paramnr)
+{
+
+    char* ret=NULL;
+
+	if(!string_isNullOrEmpty(templ) && !string_isNullOrEmpty(starttoken) && !string_isNullOrEmpty(endtoken) && params!=NULL && paramnr>0)
+	{
+		
+			
+			char* ex=string_extractBetweenTokens(templ,starttoken,endtoken);
+			if(!string_isNullOrEmpty(ex))
+			{
+                                
+                                
+				int t=0;
+				char* back=string_clone(ex);
+				
+				
+				while(t<paramnr)
+				{
+                                         
+					char* temp=string_replace(back,params[t].name,params[t].value);
+					
+                                        
+					if(!string_isNullOrEmpty(temp))
+					{
+                        free(back);
+						back=string_clone(temp);
+						free(temp);
+                        t++;
+					}
+					else
+					{
+                        free(temp);
+						break;
+					}			
+					
+				}
+                                
+                ret=string_replaceBetweenTokens(templ,starttoken,endtoken,back,Out);
+                free(back);
+                                
+
+			}
+			free(ex);
+			
+	}
+
+	return ret;
+}
+
+char* string_parseTemplateFragment(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params,int paramnr)
+{
+	char* ret=(char*)templ;
+	if(!string_isNullOrEmpty(templ) && !string_isNullOrEmpty(starttoken) && !string_isNullOrEmpty(endtoken) && params!=NULL && paramnr>0)
+	{
+		char* ex=string_extractBetweenTokens(templ,starttoken,endtoken);
+		
+		if(!string_isNullOrEmpty(ex))
+		{
+			int flag=0;
+			char* buff=string_clone("");
+			while(flag<paramnr)
+			{
+				char* temp=string_replace(ex,params[flag].name,params[flag].value);
+				char* tt=buff;
+				buff=string_join(tt,temp);
+				free(tt);
+				flag++;
+			}
+			//return buff;
+			ret=string_replaceBetweenTokens(templ,starttoken,endtoken,buff,Out);
+			free(buff);
+		}
+		free(ex);
+	}
+	return ret;
+}
+
+
+

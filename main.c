@@ -25,8 +25,27 @@ int main (int argc, const char * argv[])
 	
     free(pt);
     
- 
-        
+	//a more complex example
+	
+	const char* template2="<html><body> \
+	<p>Website template</p> \
+	<div><ul><articles><li>$title</li></articles></ul></div> \
+	<div> By: <author>$name</author> </div> \
+	</body></html>";
+
+	const char* author="Peter Erz";
+	//char* titles[]={"Long road ahead","The mimic","Godlieb"};
+    
+	
+	TemplateParam pp[2]={(TemplateParam){"$title","unu"},(TemplateParam){"$title","doi"}};
+	char* rr=string_parseTemplateFragment(template2,"<articles>","</articles>",pp,2);
+	TemplateParam autp[1]={(TemplateParam){"$name",author}};
+	char* fin=string_parseTemplateFragment(rr,"<author","</author>",autp,1);
+	free(rr);
+	
+	puts(fin);
+	free(fin);
+    
     return 0;
 }
 

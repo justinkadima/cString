@@ -48,6 +48,18 @@ typedef struct
 
 SplitResult* string_split(const char* str,const char* sep);
 
+char* string_toLower(const char* str);
+char* string_toUpper(const char* str);
+
+char* string_XORcypher(char* str,const char* key);
+
+
+char* string_htmlEncode(const char* str);
+char* string_urlEncode(const char* str);
+
+
+
+
 
 typedef struct
 {
@@ -57,16 +69,10 @@ typedef struct
 
 char* string_parseTemplate(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params,int paramnr);
 
+//char* string_getTemplateFragment(const char* templ,const char* starttoken,const char* endtoken);
+char* string_parseTemplateFragment(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params,int paramnr);
 
 
-char* string_toLower(const char* str);
-char* string_toUpper(const char* str);
-
-char* string_XORcypher(char* str,const char* key);
-
-
-char* string_htmlEncode(const char* str);
-char* string_urlEncode(const char* str);
 
 
 
