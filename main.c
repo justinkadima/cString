@@ -37,7 +37,7 @@ int main (int argc, const char * argv[])
 	//char* titles[]={"Long road ahead","The mimic","Godlieb"};
     
 	
-	TemplateParam pp[2]={(TemplateParam){"$title","unu"},(TemplateParam){"$title","doi"}};
+	TemplateParam pp[]={(TemplateParam){"$title","unu"},(TemplateParam){"$title","doi"}};
 	char* rr=string_parseTemplateFragment(template2,"<articles>","</articles>",pp,2);
 	TemplateParam autp[1]={(TemplateParam){"$name",author}};
 	char* fin=string_parseTemplateFragment(rr,"<author","</author>",autp,1);
