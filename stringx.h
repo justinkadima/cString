@@ -6,7 +6,7 @@ extern "C" {
 #endif
 
 int string_equal(const char* s1,const char* s2);
-
+char* string_malloc(size_t len);
 char* string_clone(const char* str);
 char* string_join(const char* str1,const char* str2);
 
@@ -52,7 +52,7 @@ char* string_toLower(const char* str);
 char* string_toUpper(const char* str);
 
 char* string_XORcypher(char* str,const char* key);
-
+char* string_random(int len);
 
 char* string_htmlEncode(const char* str);
 char* string_urlEncode(const char* str);

@@ -6,9 +6,36 @@
 
 
 
+char* string_malloc(size_t len)
+{
+	char* ret=(char*)malloc(len+1);
+	if(ret!=NULL)
+	{
+		ret[len]='\0';
+		
+	}
+	return ret;
+
+}
+
+char* string_clone(const char* str)
+{
+    if(str!=NULL)
+    {
+            char* ret=string_malloc(strlen(str));
+            if(ret)
+            {
+           		strcpy(ret,str);
+           		return ret;
+            }
+    }
+    return NULL;
+}
+
 int string_equal(const char* s1,const char* s2)
 {
-	return strcmp(s1,s2)==0?1:0;
+	if(s1==NULL || s2==NULL) return 0;
+	return (strcmp(s1,s2)==0);
 }
 
 const char* safe_string(const char* str)
@@ -161,8 +188,9 @@ char* string_replaceBetweenTokens(const char* str,const char* tokenstart,const c
 
 unsigned int string_startsWith(const char* str,const char* token)
 {	
-        if(strncmp(str,token,strlen(token))==0)return 1;
-        return 0;
+		if(str==NULL || token==NULL)return 0;
+        return (strncmp(str,token,strlen(token))==0);
+        
 }
 
 unsigned int string_endsWith(const char* str,const char* token)
@@ -175,7 +203,7 @@ unsigned int string_endsWith(const char* str,const char* token)
            {
                char* temp=(char*)str;
                temp+=off;
-               if(strncmp(temp,token,strlen(token))==0)return 1;
+               return (strncmp(temp,token,strlen(token))==0);
            }
         }
         return 0;
@@ -394,19 +422,8 @@ char* string_trimMultiple(const char* str,const char* keys)
     
 }
 
-char* string_clone(const char* str)
-{
-    if(str!=NULL)
-    {
-            char* ret=(char*)calloc(1,(strlen(str)+1)*sizeof(char));
-            if(ret)
-            {
-           		strcpy(ret,str);
-           		return ret;
-            }
-    }
-    return NULL;
-}
+
+
 
 char* string_join(const char* str1,const char* str2)
 {
@@ -610,7 +627,23 @@ char* string_XORcypher(char* str,const char* key)
 
 
 
+char* string_random(int len)
+{
+	static const char alphabet[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char* ret=string_malloc(len);
+	if(ret)
+	{
+		int idx=0;
+		while(idx<len)
+		{
+			ret[idx]=alphabet[rand() % (sizeof(alphabet) - 1)];
+			idx++;
+		}
+		
+	}
+	return ret;
 
+}
 
 
 
