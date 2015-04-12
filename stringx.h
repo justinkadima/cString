@@ -12,9 +12,7 @@ char* string_join(const char* str1,const char* str2);
 
 int string_countOccurence(const char* str,const char* token);
 int string_isNullOrEmpty(const char* str);
-const char* safe_string(const char* str);
-    
-#define echo(s) puts(safe_string(s))
+
     
 
 char* string_trim(const char* str);
@@ -56,23 +54,6 @@ char* string_random(int len);
 
 char* string_htmlEncode(const char* str);
 char* string_urlEncode(const char* str);
-
-
-
-
-
-typedef struct
-{
-	char* name;
-	char* value;
-}TemplateParam;
-
-char* string_parseTemplate(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params,int paramnr);
-
-//char* string_getTemplateFragment(const char* templ,const char* starttoken,const char* endtoken);
-char* string_parseTemplateFragment(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params,int paramnr);
-
-
 
 
 

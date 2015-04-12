@@ -16,8 +16,6 @@ int string_countOccurence(const char* str,const char* token);
 
 int string_isNullOrEmpty(const char* str);
 
-const char* safe_string(const char* str);
-
 char* string_XORcypher(char* str,const char* key);
 
 char* string_htmlEncode(const char* str);
@@ -44,26 +42,3 @@ char* string_replace(const char* str,const char* oldval,const char* newval);
 
 SplitResult* string_split(const char* str,const char* sep);
 
-char* string_parseTemplate(const char* templ,const char* starttoken,const char* endtoken,TemplateParam* params,int paramnr);
-
-
-A small example on how to implement a simple/basic template engine in C:
------------------------------------------------------------------------
-
-
-const char* template="<template><p>Hello $name</p><div>Your city is: $city</div></template>";
-
-
-TemplateParam par[2];
-par[0].name="$name"; 
-par[0].value="John";
-par[1].name="$city";
-par[1].value="London";
-    
-    
-char* pt=string_parseTemplate(template,"<template>","</template>",par,2);
-    
-puts(pt);
-    
-free(pt);
-    
