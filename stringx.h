@@ -10,6 +10,10 @@ char* string_malloc(size_t len);
 char* string_clone(const char* str);
 char* string_join(const char* str1,const char* str2);
 
+int string_resize(char** str,size_t newsz);
+int string_append(char** str,const char* post);
+int string_prepend(const char* ante,char** str);
+
 int string_countOccurence(const char* str,const char* token);
 int string_isNullOrEmpty(const char* str);
 

@@ -455,6 +455,67 @@ char* string_join(const char* str1,const char* str2)
 }
 
 
+
+int string_resize(char** str,size_t newsz)
+{
+	if(newsz<=0)return 0;
+	
+	size_t strsz=strlen(*str);
+	if(strsz==newsz)return 1;
+	else
+	{
+		char* temp=(char*)realloc(*str,newsz+1);
+		if(temp)
+		{
+			*str=temp;
+			if(newsz<strsz)
+			{
+			
+				(*str)[newsz]='\0';
+				
+			}
+			return 1;
+		}
+	}
+	
+	return 0;
+}
+
+
+int string_append(char** str,const char* post)
+{
+	if(!(*str) || !post)
+	{
+		return 0;
+	}
+	
+	if(string_resize(&(*str),strlen(post)))
+	{
+		*str=strcat(*str,post);
+		return 1;
+	}
+	return 0;
+}
+
+int string_prepend(const char* ante,char** str)
+{
+	if(!ante || !(*str))
+	{
+		return 0;
+	}
+	size_t sz=strlen(ante);
+	
+	if(string_resize(&(*str),sz+1))
+	{
+		memmove((*str)+sz, (*str),sz+1);
+		memcpy((*str),ante,sz);
+		return 1;
+	}
+	
+	return 0;
+}
+
+
 char* string_toLower(const char* str)
 {
     if(str!=NULL)
