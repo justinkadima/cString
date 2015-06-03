@@ -207,70 +207,50 @@ unsigned int string_endsWith(const char* str,const char* token)
 
 
 
-SplitResult* string_split(const char* str,const char* sep)
+int string_split(const char* text,const char* delim,char*** tokens,int maxnr)
 {
-	if(!string_isNullOrEmpty(str) && !string_isNullOrEmpty(sep))
-	{
-		SplitResult* res=(SplitResult*)calloc(1,sizeof(SplitResult));
-		res->nr=0;
-
-		if(res!=NULL)
-		{
-			int oc=string_countOccurence(str,sep);
-			if(oc>0)
-			{
-				int dim=oc+1;
-
-				if(string_startsWith(str,sep))dim--;
-				if(string_endsWith(str,sep))dim--;
-
-				res->fragments=(char**)calloc(dim,sizeof(char*));
-				if(res->fragments!=NULL)
-				{
-					char* temp=NULL;
-					char* old=(char*)str;
-
-					while(1)
-					{
-						temp=strstr(old,sep);
-
-						size_t dif=0;
-
-						if(temp==NULL)
-						{
-							dif=strlen(old);
-						}
-						else
-						{
-							dif=strlen(old)-strlen(temp);
-						}
-						
-						if(dif>0)
-						{
-							res->nr++;
-							*(res->fragments)=(char*)calloc(dif+1,sizeof(char));
-							strncpy(*(res->fragments),old,dif);
-							if(res->nr<dim)
-							{
-								res->fragments+=sizeof(char*);
-							}
-						}
-
-						if(temp==NULL)break;
-
-						temp+=strlen(sep);
-						old=temp;
-					}
-					res->fragments-=sizeof(char*)*(res->nr-1);
-					return res;
-
-				}
-			}
-
-		}
-
-	}
-	return NULL;
+    char* temp=(char*)text;
+    int nrtokens=0;
+    
+    if(!maxnr)
+    {
+        maxnr=100;
+    }
+    
+    (*tokens)=malloc(maxnr*sizeof(char*));
+    
+    while(1)
+    {
+        char* back=temp;
+        temp=strstr(temp,delim);
+        if(temp)
+        {
+           
+            
+            if(maxnr<=(nrtokens))break;
+            
+            int off=strlen(back)-strlen(temp);
+            temp+=strlen(delim);
+            if(off<=0)
+            {
+                continue;
+            }
+            char* word=malloc(off+1);
+            strncpy(word,back,off);
+            word[off]='\0';
+        
+            
+            (*tokens)[nrtokens]=word;
+            nrtokens++;
+            
+        }
+        else
+        {
+            break;
+        }
+        
+    }
+    return nrtokens;
 }
 
 
