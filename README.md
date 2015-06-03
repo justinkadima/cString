@@ -47,6 +47,25 @@ char* string_extractBetweenTokens(const char* str,const char* tokenstart,const c
 
 char* string_replace(const char* str,const char* oldval,const char* newval);
 
-int string_split(const char* text,const char* delim,char*** tokens,int maxnr)
+int string_split(const char* text,const char* delim,char*** tokens,int maxnr);
+
+split_result* string_split_result(const char* text,const char* delim,int maxnr);
+
+int iterate_split_result(split_result* res,char** val);
+
+void free_split_result(split_result* res);
+
+/*
+    split_result* res=string_split_result(text,delim,0);
+    char* temp;
+    
+    while(iterate_split_result(res,&temp))
+    {
+        puts(temp);
+    }
+    
+    free_split_result(res);
+    
+  */
 
 ```
