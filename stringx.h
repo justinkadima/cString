@@ -37,7 +37,17 @@ char* string_replaceBetweenTokens(const char* str,const char* tokenstart,const c
 char* string_extractBetweenTokens(const char* str,const char* tokenstart,const char* tokenend);
 char* string_replace(const char* str,const char* oldval,const char* newval);
 
-int string_split(const char* text,const char* delim,char*** tokens,int maxnr)
+int string_split(const char* text,const char* delim,char*** tokens,int maxnr);
+
+typedef struct
+{
+    char** tokens;
+    int nr;
+}split_result;
+
+int iterate_split_result(split_result* res,char** val);
+void free_split_result(split_result* res);
+split_result* string_split_result(const char* text,const char* delim,int maxnr);
 
 char* string_toLower(const char* str);
 char* string_toUpper(const char* str);
