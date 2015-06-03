@@ -205,7 +205,80 @@ unsigned int string_endsWith(const char* str,const char* token)
 }
 
 
+int iterate_split_result(split_result* res,char** val)
+{
+    if(res && res->nr>0)
+    {
+        static int idx=-1;
+        if(idx>=(res->nr-1))return 0;
+        
+        idx++;
+        (*val)=res->tokens[idx];
+        return 1;
+    }
+    return 0;
+}
+void free_split_result(split_result* res)
+{
+    if(res && res->nr>0)
+    {
+        int x;
+        for(x=0;x<res->nr;x++)
+        {
+            free(res->tokens[x]);
+            res->tokens[x]=NULL;
+        }
+    }
+    free(res->tokens);
+    res->tokens=NULL;
+    
+    free(res);
+    res=NULL;
+}
 
+split_result* string_split_result(const char* text,const char* delim,int maxnr)
+{
+    if(!maxnr)maxnr=100;
+    
+    split_result* result=malloc(sizeof(split_result));
+    result->tokens=malloc(maxnr*sizeof(char*));
+    result->nr=0;
+    
+    char* temp=(char*)text;
+    
+    while(1)
+    {
+        char* back=temp;
+        temp=strstr(temp,delim);
+        if(temp)
+        {
+            
+            if(maxnr<=(result->nr))break;
+            
+            int off=strlen(back)-strlen(temp);
+            temp+=strlen(delim);
+            if(off<=0)
+            {
+                continue;
+            }
+            char* word=malloc(off+1);
+            strncpy(word,back,off);
+            word[off]='\0';
+        
+            
+            result->tokens[result->nr]=word;
+            result->nr++;
+            
+        }
+        else
+        {
+            break;
+        }
+        
+    }
+    return result;
+    
+}
 
 int string_split(const char* text,const char* delim,char*** tokens,int maxnr)
 {
