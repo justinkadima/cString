@@ -1,7 +1,7 @@
 ##Some usefull string related (char* based) C functions:
 ------------------------------------------------------
 
-
+```cpp
 
 int string_equal(const char* s1,const char* s2);
 
@@ -55,9 +55,14 @@ int iterate_split_result(split_result* res,char** val);
 
 void free_split_result(split_result* res);
 
-```C
+```
 
-   #Example
+
+###Example
+
+```cpp
+
+  
    
     split_result* res=string_split_result(text,delim,0);
     char* temp;
